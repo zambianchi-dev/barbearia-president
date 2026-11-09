@@ -1,0 +1,348 @@
+/* ==========================================================
+   BioSite — estilos base
+   As cores vêm do config.js (tema) e caem nestes padrões.
+   ========================================================== */
+:root {
+  --brand-primary: #1a73e8;
+  --brand-on-primary: #ffffff;
+  --brand-bg: #ffffff;
+  --brand-surface: #f4f5f7;
+  --brand-border: #e3e5e8;
+  --brand-text: #1f1f1f;
+  --brand-muted: #5f6368;
+
+  --font-heading: "Oswald", "Arial Narrow", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --page-max: 680px;
+  --whatsapp: #25D366;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--brand-bg);
+  color: var(--brand-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+img { display: block; max-width: 100%; }
+svg { display: block; }
+:focus-visible { outline: 2px solid var(--brand-primary); outline-offset: 3px; border-radius: 8px; }
+
+.bio {
+  position: relative;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 16px 32px;
+}
+
+/* ---------- 0. Barra de ações (dentro da capa) ---------- */
+.topbar {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 5;
+  display: flex; gap: 8px;
+}
+.icon-btn {
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 0; border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background .2s;
+}
+.icon-btn:hover { background: rgba(0,0,0,.65); }
+.icon-btn svg { width: 20px; height: 20px; }
+.menu-wrap { position: relative; }
+.menu {
+  position: absolute; right: 0; top: 48px;
+  min-width: 220px;
+  background: var(--brand-surface);
+  color: var(--brand-text);
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.35);
+}
+.menu button, .menu a {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0; border-radius: 10px;
+  background: none;
+  text-align: left; font-size: 15px;
+  cursor: pointer;
+}
+.menu button:hover, .menu a:hover { background: var(--brand-border); }
+.menu svg { width: 18px; height: 18px; color: var(--brand-primary); flex: none; }
+
+/* ---------- 1. Capa + 2. Identidade ---------- */
+.hero {
+  position: relative;
+  height: 340px;
+  margin-top: 12px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--brand-surface) center / cover no-repeat;
+  color: #fff;
+  display: flex; align-items: flex-end;
+}
+/* degradê preto de baixo para cima */
+.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to top,
+    rgba(0,0,0,.85) 0%,
+    rgba(0,0,0,.55) 35%,
+    rgba(0,0,0,.15) 65%,
+    rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  width: 100%;
+  padding: 0 20px 20px;
+}
+.avatar {
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,.9);
+  background: var(--brand-primary) center / cover no-repeat;
+  color: var(--brand-on-primary);
+  display: grid; place-items: center;
+  font-family: var(--font-heading);
+  font-size: 36px; font-weight: 600;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,.35);
+}
+.name {
+  margin: 12px 0 4px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0,0,0,.4);
+}
+.handle { margin: 0; color: rgba(255,255,255,.82); font-size: 15px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border: 0; border-radius: 999px;
+  font-weight: 600; font-size: 16px;
+  cursor: pointer;
+  transition: transform .15s, filter .2s;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn:active { transform: scale(.98); }
+.btn svg { width: 22px; height: 22px; flex: none; }
+.btn-primary { background: var(--brand-primary); color: var(--brand-on-primary); }
+
+/* ---------- 3. Linha de ações (WhatsApp + redes) ---------- */
+.actions { position: relative; margin-top: 14px; }
+.chips {
+  display: flex; gap: 8px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: none;
+  display: flex; align-items: center; gap: 10px;
+  height: 56px;
+  padding: 0 18px 0 12px;
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  transition: border-color .2s, filter .2s;
+}
+.chip:hover { border-color: var(--brand-primary); }
+.chip-icon {
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  background: var(--brand-bg);
+  color: var(--brand-primary);
+}
+.chip-icon svg { width: 20px; height: 20px; }
+.chip-text { display: flex; flex-direction: column; text-align: left; line-height: 1.25; }
+.chip-label { font-weight: 600; font-size: 14px; }
+.chip-handle { color: var(--brand-muted); font-size: 12.5px; }
+/* chip do WhatsApp: destaque com a cor da marca */
+.chip-whatsapp {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: var(--brand-on-primary);
+  padding: 0 22px 0 16px;
+}
+.chip-whatsapp:hover { filter: brightness(1.08); border-color: var(--brand-primary); }
+.chip-whatsapp .chip-icon { background: transparent; color: inherit; width: 24px; }
+.chip-whatsapp .chip-icon svg { width: 22px; height: 22px; }
+.chip-whatsapp .chip-label { font-size: 15px; }
+
+.scroll-arrow {
+  position: absolute; top: 50%; z-index: 2;
+  width: 40px; height: 40px;
+  transform: translateY(-50%);
+  display: grid; place-items: center;
+  border: 1px solid var(--brand-border); border-radius: 50%;
+  background: var(--brand-bg);
+  color: var(--brand-text);
+  cursor: pointer;
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--brand-bg) 70%, transparent), 0 4px 12px rgba(0,0,0,.35);
+}
+.scroll-arrow:hover { border-color: var(--brand-primary); }
+.scroll-arrow svg { width: 20px; height: 20px; }
+.scroll-left { left: -6px; }
+.scroll-right { right: -6px; }
+
+/* ---------- Seções ---------- */
+.section { margin-top: 32px; }
+.section-title {
+  margin: 0 0 12px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.about { margin: 0; color: var(--brand-text); opacity: .9; }
+
+/* ---------- 5. Links ---------- */
+.links { display: flex; flex-direction: column; gap: 10px; }
+.link-card {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius-md);
+  transition: border-color .2s, transform .15s;
+}
+.link-card:hover { border-color: var(--brand-primary); }
+.link-card:active { transform: scale(.99); }
+.link-icon {
+  width: 44px; height: 44px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  background: var(--brand-bg);
+  color: var(--brand-primary);
+}
+.link-icon svg { width: 22px; height: 22px; }
+.link-text { flex: 1; min-width: 0; }
+.link-title { display: block; font-weight: 600; }
+.link-url { display: block; color: var(--brand-muted); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.link-arrow { color: var(--brand-muted); }
+.link-arrow svg { width: 20px; height: 20px; }
+
+/* ---------- 6. Avalie no Google ---------- */
+.review {
+  padding: 24px 20px;
+  text-align: center;
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-primary);
+  border-radius: var(--radius-lg);
+  background-image: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--brand-primary) 16%, transparent), transparent 70%);
+}
+.review-stars { display: flex; justify-content: center; gap: 4px; color: var(--brand-primary); }
+.review-stars svg { width: 28px; height: 28px; }
+.review-score { margin: 8px 0 0; font-size: 14px; color: var(--brand-muted); }
+.review-score strong { color: var(--brand-text); font-size: 16px; }
+.review-title {
+  margin: 12px 0 6px;
+  font-family: var(--font-heading);
+  font-weight: 600; font-size: 24px;
+  text-transform: uppercase;
+}
+.review-text { margin: 0 auto 18px; max-width: 380px; color: var(--brand-muted); font-size: 15px; }
+.btn-google { background: #fff; color: #1f1f1f; width: 100%; max-width: 300px; }
+
+/* ---------- 7. Galeria ---------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.gallery-item {
+  position: relative;
+  aspect-ratio: 1;
+  padding: 0; border: 0;
+  background: var(--brand-surface);
+  cursor: zoom-in;
+  overflow: hidden;
+}
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.gallery-item:hover img { transform: scale(1.05); }
+
+/* ---------- 8. Rodapé ---------- */
+.footer { margin-top: 40px; text-align: center; color: var(--brand-muted); font-size: 13px; }
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.92);
+  padding: 56px 12px;
+}
+.lightbox[hidden] { display: none; }
+.lb-figure { margin: 0; max-width: min(92vw, 900px); text-align: center; }
+.lb-figure img { max-height: 78vh; width: auto; margin: 0 auto; border-radius: 10px; }
+.lb-figure figcaption { margin-top: 12px; color: #eee; font-size: 15px; }
+.lb-btn {
+  position: absolute;
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border: 0; border-radius: 50%;
+  background: rgba(255,255,255,.12);
+  color: #fff; cursor: pointer;
+}
+.lb-btn:hover { background: rgba(255,255,255,.22); }
+.lb-btn svg { width: 22px; height: 22px; }
+.lb-close { top: 12px; right: 12px; }
+.lb-prev { left: 12px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 12px; top: 50%; transform: translateY(-50%); }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 24px; z-index: 60;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 32px);
+  padding: 12px 18px;
+  background: var(--brand-text); color: var(--brand-bg);
+  border-radius: 12px;
+  font-size: 14px; font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0,0,0,.3);
+  word-break: break-all;
+}
+
+/* ---------- Telas maiores ---------- */
+@media (min-width: 600px) {
+  .bio { padding-top: 12px; }
+  .hero { height: 380px; }
+  .hero-content { padding: 0 28px 26px; }
+  .avatar { width: 92px; height: 92px; }
+  .name { font-size: 44px; }
+  .handle { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

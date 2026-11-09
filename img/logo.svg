@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#0C1325"/>
+  <circle cx="200" cy="200" r="168" fill="none" stroke="#E0C01A" stroke-width="6"/>
+  <circle cx="200" cy="200" r="150" fill="none" stroke="#E0C01A" stroke-width="2" opacity="0.5"/>
+  <text x="200" y="232" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="110" font-weight="700" fill="#E0C01A">CF</text>
+  <text x="200" y="292" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="8" fill="#F3EDE2">DESDE 2015</text>
+</svg>
